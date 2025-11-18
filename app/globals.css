@@ -1,10 +1,5 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -12,15 +7,38 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+body {
+  @apply bg-background text-foreground antialiased;
+}
+
+:root {
+  --foreground: #000000;
+  --background: #fafafa;
+  --background-muted: #a3a3a3;
+}
+
+.prose-invert {
+  --tw-prose-body: var(--foreground-muted);
+  --tw-prose-headings: var(--foreground);
+}
+
+/* Animation for revealing text */
+@keyframes reveal {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-reveal {
+  animation: reveal 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  transform: translateY(100%);
+}
+
+.text-bg-clip {
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
