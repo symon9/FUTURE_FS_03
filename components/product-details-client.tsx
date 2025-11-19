@@ -1,9 +1,8 @@
-"use client"; // This is the crucial directive
+"use client";
 
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 
-// Define the Product type so this component knows what data to expect
 interface Product {
   id: string;
   name: string;
@@ -14,7 +13,6 @@ interface Product {
   images: string[];
 }
 
-// A simple button component
 function AddToBagButton() {
   return (
     <button className="w-full mt-8 bg-primary text-background py-4 text-base font-bold uppercase tracking-widest transition-opacity hover:opacity-80">
@@ -23,7 +21,6 @@ function AddToBagButton() {
   );
 }
 
-// This component handles ALL UI rendering for the product page
 export function ProductDetailsClient({ product }: { product: Product }) {
   const { name, price, description, images } = product;
 
@@ -33,7 +30,7 @@ export function ProductDetailsClient({ product }: { product: Product }) {
         {/* Image Gallery Column */}
         <div className="flex flex-col gap-y-8">
           {images?.map((imgUrl: string, index: number) => (
-            <div key={index} className="aspect-[3/4] bg-neutral-900">
+            <div key={index} className="aspect-3/4 bg-neutral-900">
               <Image
                 src={imgUrl}
                 alt={`${name} image ${index + 1}`}
@@ -48,9 +45,7 @@ export function ProductDetailsClient({ product }: { product: Product }) {
 
         {/* Product Info Column (Sticky) */}
         <div className="lg:sticky top-32 h-fit mt-12 lg:mt-0">
-          <h1 className="text-4xl lg:text-5xl font-black tracking-tighter uppercase">
-            {name}
-          </h1>
+          <h1 className="text-4xl lg:text-5xl font-black tracking-tighter uppercase">{name}</h1>
           <p className="text-3xl mt-4">${price.toLocaleString()}</p>
           <div className="prose prose-invert mt-6 max-w-none">
             <ReactMarkdown>{description}</ReactMarkdown>

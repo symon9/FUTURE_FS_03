@@ -1,10 +1,9 @@
-"use client"; // This component needs client-side interactivity for animations
+"use client";
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-// Use the high-quality images you already have
 const heroImages = [
   {
     src: "https://drive.google.com/uc?id=18iVH2S1kC71JrkovenUQ5_BCDFV-89LK",
@@ -23,15 +22,11 @@ const heroImages = [
 export function HeroSection() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // This effect will cycle through the images every 5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 5000); // 5-second interval
+      setCurrentImageIndex((prevIndex) => (prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1));
+    }, 5000);
 
-    // Cleanup the timer when the component unmounts
     return () => clearInterval(timer);
   }, []);
 
@@ -49,7 +44,7 @@ export function HeroSection() {
               object-cover object-center w-full h-full transition-opacity duration-1000 ease-in-out
               ${currentImageIndex === index ? "opacity-100" : "opacity-0"}
             `}
-            priority={index === 0} // Prioritize loading the first image
+            priority={index === 0}
           />
         ))}
         {/* Dark overlay for better text readability */}

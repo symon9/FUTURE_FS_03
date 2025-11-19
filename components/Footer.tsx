@@ -34,7 +34,6 @@ export function Footer() {
                 aria-label={link.name}
                 className="text-foreground-muted hover:text-primary transition-colors duration-300"
               >
-                {/* The icon component is rendered here */}
                 <link.icon className="w-6 h-6" />
               </a>
             ))}

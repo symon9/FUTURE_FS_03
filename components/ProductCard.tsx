@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Product } from "@/types"; // Import our type
+import { Product } from "@/types";
 
 interface ProductCardProps {
   product: Product;
@@ -8,7 +8,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const { name, price, slug, images } = product;
-  const imageUrl = images?.[0] || "/placeholder.jpg"; // Fallback for products with no image
+  const imageUrl = images?.[0] || "/placeholder.jpg";
 
   return (
     <Link href={`/product/${slug}`} className="group">
@@ -23,9 +23,7 @@ export function ProductCard({ product }: ProductCardProps) {
       </div>
       <div className="mt-4 flex justify-between">
         <div>
-          <h3 className="text-sm uppercase tracking-wider text-foreground">
-            {name}
-          </h3>
+          <h3 className="text-sm uppercase tracking-wider text-foreground">{name}</h3>
         </div>
         <p className="text-sm font-medium text-primary">${price}</p>
       </div>

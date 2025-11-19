@@ -7,7 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// --- Component Interfaces (no change) ---
 interface Scene {
   id: string;
   text: string;
@@ -30,10 +29,8 @@ export function HorizontalGallery({ scenes }: HorizontalGalleryProps) {
     if (!component || !track) return;
 
     // --- RESPONSIVE LOGIC WITH GSAP's matchMedia ---
-    // This is the professional way to create different animations for different screen sizes.
     const mm = gsap.matchMedia(component);
 
-    // Add animations for desktop screens (min-width: 1024px)
     mm.add("(min-width: 1024px)", () => {
       if (scenes.length <= 1) return;
 
@@ -90,35 +87,21 @@ export function HorizontalGallery({ scenes }: HorizontalGalleryProps) {
   }
 
   return (
-    // On desktop, this ref is used for pinning. On mobile, it's just a container.
     <div ref={componentRef} className="relative w-full">
-      {/* On desktop, this holds the sticky track. On mobile, it's not sticky. */}
       <div className="lg:sticky lg:top-0 lg:h-screen lg:w-full lg:overflow-hidden">
-        {/*
-          - The track for horizontal scroll on desktop.
-          - On mobile, it becomes a simple vertical flex container.
-        */}
         <div
           ref={trackRef}
           className="relative h-full flex flex-col lg:flex-row"
-          // Width is only needed for the horizontal desktop animation
           style={{
             width: scenes.length > 1 ? `${scenes.length * 100}vw` : "100vw",
           }}
         >
           {scenes.map((scene) => (
-            <div
-              key={scene.id}
-              className="scene-panel w-screen h-screen flex items-center justify-center p-8 lg:p-16"
-            >
+            <div key={scene.id} className="scene-panel w-screen h-screen flex items-center justify-center p-8 lg:p-16">
               <div
                 className={`
                   w-full max-w-7xl mx-auto flex items-center gap-8 lg:gap-16
-                  ${
-                    scene.layout === "text-right"
-                      ? "flex-col lg:flex-row-reverse"
-                      : "flex-col lg:flex-row"
-                  }
+                  ${scene.layout === "text-right" ? "flex-col lg:flex-row-reverse" : "flex-col lg:flex-row"}
                 `}
               >
                 <div className="relative z-10 w-full lg:w-1/2 flex justify-center">
@@ -128,12 +111,7 @@ export function HorizontalGallery({ scenes }: HorizontalGalleryProps) {
                 </div>
                 <div className="relative z-0 w-full lg:w-1/2">
                   <div className="scene-image relative aspect-3/4">
-                    <Image
-                      src={scene.imageSrc}
-                      alt={scene.imageAlt}
-                      fill
-                      className="object-cover"
-                    />
+                    <Image src={scene.imageSrc} alt={scene.imageAlt} fill className="object-cover" />
                   </div>
                 </div>
               </div>

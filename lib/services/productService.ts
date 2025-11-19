@@ -2,8 +2,7 @@ import { db } from "@/lib/firebase-admin";
 import { Product } from "@/types"; // Import our new type
 import { DocumentData, QueryDocumentSnapshot } from "firebase-admin/firestore";
 
-// A Firestore converter is the professional way to ensure data
-// is typed correctly when it's fetched.
+// A Firestore converter
 const productConverter = {
   fromFirestore(snapshot: QueryDocumentSnapshot): Product {
     const data = snapshot.data() as DocumentData;
@@ -16,8 +15,6 @@ const productConverter = {
     };
   },
   toFirestore(product: Product): DocumentData {
-    // We only need fromFirestore for this service, but it's good practice
-    // to have both.
     const { id, ...data } = product;
     return data;
   },

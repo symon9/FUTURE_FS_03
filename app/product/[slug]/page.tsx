@@ -3,7 +3,6 @@ import { DocumentData, QueryDocumentSnapshot } from "firebase-admin/firestore";
 import { notFound } from "next/navigation";
 import { ProductDetailsClient } from "@/components/product-details-client";
 
-// The Product interface (no change)
 interface Product {
   id: string;
   name: string;
@@ -14,7 +13,7 @@ interface Product {
   images: string[];
 }
 
-// The Firestore converter (no change)
+// The Firestore converter
 const productConverter = {
   toFirestore(product: Product): DocumentData {
     const { id, ...data } = product;
@@ -34,16 +33,11 @@ const productConverter = {
   },
 };
 
-// The data fetching function (no change)
 async function getProduct(slug: string): Promise<Product | null> {
-  // This check prevents Firestore from receiving an undefined value
   if (!slug) return null;
 
   const productsRef = db.collection("products").withConverter(productConverter);
-  const querySnapshot = await productsRef
-    .where("slug", "==", slug)
-    .limit(1)
-    .get();
+  const querySnapshot = await productsRef.where("slug", "==", slug).limit(1).get();
 
   if (querySnapshot.empty) {
     return null;
@@ -51,16 +45,7 @@ async function getProduct(slug: string): Promise<Product | null> {
   return querySnapshot.docs[0].data();
 }
 
-// --- This is the PURE Server Component with the FINAL FIX ---
-export default async function ProductPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  // Type can hint it's a promise
-
-  // --- THE FIX ---
-  // Await the params promise to get the actual slug value
+export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const product = await getProduct(resolvedParams.slug);
 

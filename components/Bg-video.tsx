@@ -9,10 +9,7 @@ export function BackgroundVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   return (
-    <div
-      ref={containerRef}
-      className="absolute inset-0 z-0 w-full h-full overflow-hidden"
-    >
+    <div ref={containerRef} className="absolute inset-0 z-0 w-full h-full overflow-hidden">
       <video
         ref={videoRef}
         src={videoSrc}

@@ -55,10 +55,7 @@ export function MagneticHero() {
   }, []);
 
   return (
-    <section
-      ref={heroRef}
-      className="relative h-screen w-full bg-black overflow-hidden cursor-none"
-    >
+    <section ref={heroRef} className="relative h-screen w-full bg-black overflow-hidden cursor-none">
       {/* --- LAYER 0: The New Floating Particles Background --- */}
       <BackgroundVideo />
 
@@ -68,13 +65,7 @@ export function MagneticHero() {
         className="absolute top-0 left-0 w-[30vw] h-[30vw] min-w-[300px] min-h-[300px] scale-0 rounded-full z-10 overflow-hidden"
         style={{ x: "-50%", y: "-50%" }}
       >
-        <Image
-          src={magneticImageSrc}
-          alt=""
-          fill
-          className="object-cover"
-          priority
-        />
+        <Image src={magneticImageSrc} alt="" fill className="object-cover" priority />
       </div>
 
       {/* --- LAYER 2: The Text Stencil (no change) --- */}

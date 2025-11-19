@@ -23,9 +23,7 @@ const categoryConverter = {
  * @returns A promise that resolves to an array of Category objects.
  */
 export async function getCategories(): Promise<Category[]> {
-  const categoriesRef = db
-    .collection("categories")
-    .withConverter(categoryConverter);
+  const categoriesRef = db.collection("categories").withConverter(categoryConverter);
   const snapshot = await categoriesRef.get();
 
   if (snapshot.empty) {

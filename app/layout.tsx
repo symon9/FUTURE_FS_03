@@ -21,7 +21,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   const categories = await getCategories();
   return (
     <html lang="en" className={inter.variable}>
