@@ -12,7 +12,9 @@ interface InteractiveCategoryWallProps {
 export function InteractiveCategoryWall({ categories }: InteractiveCategoryWallProps) {
   const [activeCategory, setActiveCategory] = useState<Category | null>(null);
 
-  const categoriesWithImages = categories.filter((category) => category.imageSrc);
+  const categoriesWithImages = categories.filter(
+    (category): category is Category & { imageSrc: string } => !!category.imageSrc
+  );
 
   return (
     <section className="relative w-full h-screen bg-black" onMouseLeave={() => setActiveCategory(null)}>
