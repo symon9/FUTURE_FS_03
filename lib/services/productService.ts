@@ -13,6 +13,7 @@ const productConverter = {
       slug: data.slug,
       category: data.category,
       images: data.images,
+      description: data.description,
     };
   },
   toFirestore(product: Product): DocumentData {

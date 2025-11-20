@@ -1,4 +1,5 @@
 import { db } from "@/lib/firebase-admin";
+import { getProducts } from "@/lib/services/productService";
 import { DocumentData, QueryDocumentSnapshot } from "firebase-admin/firestore";
 import { notFound } from "next/navigation";
 import { ProductDetailsClient } from "@/components/product-details-client";
@@ -53,5 +54,34 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     notFound();
   }
 
-  return <ProductDetailsClient product={product} />;
+  const allProducts = await getProducts();
+  
+  // Filter out current product and products from the same category
+  const candidates = allProducts.filter(
+    (p) => p.id !== product.id && p.category !== product.category
+  );
+
+  const relatedProducts: Product[] = [];
+  const usedCategories = new Set<string>();
+
+  // First pass: try to get products from different categories
+  for (const p of candidates) {
+    if (relatedProducts.length >= 3) break;
+    if (!usedCategories.has(p.category)) {
+      relatedProducts.push(p);
+      usedCategories.add(p.category);
+    }
+  }
+
+  // Second pass: fill up to 3 if we don't have enough unique categories
+  if (relatedProducts.length < 3) {
+    for (const p of candidates) {
+      if (relatedProducts.length >= 3) break;
+      if (!relatedProducts.some((rp) => rp.id === p.id)) {
+        relatedProducts.push(p);
+      }
+    }
+  }
+
+  return <ProductDetailsClient product={product} relatedProducts={relatedProducts} />;
 }

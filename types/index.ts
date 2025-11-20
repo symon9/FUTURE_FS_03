@@ -5,6 +5,7 @@ export interface Product {
   slug: string;
   category: string;
   images: string[];
+  description: string;
 }
 
 export interface Category {
