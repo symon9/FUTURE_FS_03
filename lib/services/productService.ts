@@ -1,5 +1,5 @@
 import { db } from "@/lib/firebase-admin";
-import { Product } from "@/types"; // Import our new type
+import { Product } from "@/types";
 import { DocumentData, QueryDocumentSnapshot } from "firebase-admin/firestore";
 
 // A Firestore converter
@@ -11,10 +11,12 @@ const productConverter = {
       name: data.name,
       price: data.price,
       slug: data.slug,
+      category: data.category,
       images: data.images,
     };
   },
   toFirestore(product: Product): DocumentData {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id, ...data } = product;
     return data;
   },

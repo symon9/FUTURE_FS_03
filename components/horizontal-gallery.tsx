@@ -91,7 +91,7 @@ export function HorizontalGallery({ scenes }: HorizontalGalleryProps) {
       <div className="lg:sticky lg:top-0 lg:h-screen lg:w-full lg:overflow-hidden">
         <div
           ref={trackRef}
-          className="relative h-full flex flex-col lg:flex-row"
+          className="relative h-full flex flex-col lg:flex-row" // TODO: adjust for multiple scenes wdith
           style={{
             width: scenes.length > 1 ? `${scenes.length * 100}vw` : "100vw",
           }}
