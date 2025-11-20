@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
+import { Product } from "@/types";
 import Image from "next/image";
 import { db } from "@/lib/firebase-admin";
 import { notFound } from "next/navigation";
@@ -16,12 +16,12 @@ async function getCategoryData(slug: string) {
   const productList = productSnapshot.docs.map((doc) => ({
     id: doc.id,
     ...doc.data(),
-  }));
+  })) as Product[];
 
   return { name: categoryData.name, products: productList };
 }
 
-function ProductCard({ product }: { product: any }) {
+function ProductCard({ product }: { product: Product }) {
   const { name, price, slug, images } = product;
   const imageUrl = images?.[0] || "/placeholder.jpg";
 
@@ -63,7 +63,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       </div>
       {products.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12">
-          {products.map((product: any) => (
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
