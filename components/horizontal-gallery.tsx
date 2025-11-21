@@ -91,10 +91,13 @@ export function HorizontalGallery({ scenes }: HorizontalGalleryProps) {
       <div className="lg:sticky lg:top-0 lg:h-screen lg:w-full lg:overflow-hidden">
         <div
           ref={trackRef}
-          className="relative h-full flex flex-col lg:flex-row" // TODO: adjust for multiple scenes wdith
-          style={{
-            width: scenes.length > 1 ? `${scenes.length * 100}vw` : "100vw",
-          }}
+          className="relative h-full flex flex-col lg:flex-row w-full lg:w-(--track-width)"
+          style={
+            {
+              "--track-width":
+                scenes.length > 1 ? `${scenes.length * 100}vw` : "100vw",
+            } as React.CSSProperties
+          }
         >
           {scenes.map((scene) => (
             <div key={scene.id} className="scene-panel w-screen h-screen flex items-center justify-center p-8 lg:p-16">
