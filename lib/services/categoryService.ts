@@ -13,6 +13,7 @@ const categoryConverter = {
     };
   },
   toFirestore(category: Category): DocumentData {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id, ...data } = category;
     return data;
   },

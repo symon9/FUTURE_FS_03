@@ -33,7 +33,6 @@ export function ProductGridSection({ products }: ProductGridSectionProps) {
     setVisibleCount(ITEMS_PER_PAGE);
   };
 
-  // GSAP Animation for grid items using our hook
   const containerRef = useStaggeredGrid([visibleProducts]);
 
   const handleLoadMore = () => {
@@ -75,10 +74,7 @@ export function ProductGridSection({ products }: ProductGridSectionProps) {
         </div>
 
         {/* --- PRODUCT GRID --- */}
-        <div
-          ref={containerRef}
-          className="grid gap-y-12 gap-x-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-        >
+        <div ref={containerRef} className="grid gap-y-12 gap-x-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {visibleProducts.map((product) => (
             <div key={product.id} className="product-card">
               <ProductCard product={product} />
@@ -86,7 +82,6 @@ export function ProductGridSection({ products }: ProductGridSectionProps) {
           ))}
         </div>
 
-        {/* --- LOAD MORE --- */}
         {visibleCount < filteredProducts.length && (
           <div className="mt-24 flex justify-center">
             <button

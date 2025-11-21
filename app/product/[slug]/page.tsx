@@ -17,6 +17,7 @@ interface Product {
 // The Firestore converter
 const productConverter = {
   toFirestore(product: Product): DocumentData {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id, ...data } = product;
     return data;
   },
@@ -55,11 +56,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   }
 
   const allProducts = await getProducts();
-  
+
   // Filter out current product and products from the same category
-  const candidates = allProducts.filter(
-    (p) => p.id !== product.id && p.category !== product.category
-  );
+  const candidates = allProducts.filter((p) => p.id !== product.id && p.category !== product.category);
 
   const relatedProducts: Product[] = [];
   const usedCategories = new Set<string>();
