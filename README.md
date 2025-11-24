@@ -1,6 +1,11 @@
 # Balenciaga Reimagined
 
-![Balenciaga Demo](public/demo.webp)
+![License](https://img.shields.io/github/license/symon9/FUTURE_FS_03)
+![Issues](https://img.shields.io/github/issues/symon9/FUTURE_FS_03)
+![Stars](https://img.shields.io/github/stars/symon9/FUTURE_FS_03)
+![Forks](https://img.shields.io/github/forks/symon9/FUTURE_FS_03)
+
+![Balenciaga Demo](public/demo.gif)
 
 > A high-fidelity, luxury fashion e-commerce experience inspired by Balenciaga's brutalist and minimalist aesthetic.
 
@@ -8,7 +13,7 @@
 
 This project is a conceptual redesign of the Balenciaga e-commerce platform, focusing on a raw, industrial, and avant-garde user experience. It leverages modern web technologies to deliver smooth animations, interactive elements, and a seamless shopping journey that embodies the brand's identity.
 
-The design philosophy centers on **brutalism**—stripping away unnecessary ornamentation to reveal the raw structure of the content. Bold typography, stark contrasts, and unconventional layouts drive the visual narrative.
+The design philosophy centers on **brutalism** stripping away unnecessary ornamentation to reveal the raw structure of the content. Bold typography, stark contrasts, and unconventional layouts drive the visual narrative.
 
 ## ✦ Key Features
 
